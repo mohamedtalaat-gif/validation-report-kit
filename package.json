@@ -1,0 +1,24 @@
+{
+  "name": "validation-report-kit",
+  "version": "1.0.0",
+  "description": "Turns one JSON file of validation reports into a static hub with counters and a page per report, with five SVG chart types. No dependencies.",
+  "type": "module",
+  "bin": {
+    "validation-report-kit": "bin/build.js"
+  },
+  "main": "src/render.js",
+  "exports": {
+    ".": "./src/render.js",
+    "./charts": "./src/charts.js",
+    "./schema": "./src/schema.js"
+  },
+  "files": ["src", "bin", "examples"],
+  "scripts": {
+    "test": "node --test",
+    "example": "node bin/build.js examples/reports.json dist"
+  },
+  "license": "MIT",
+  "author": "Muhammad Talaat",
+  "repository": "github:mohamedtalaat-gif/validation-report-kit",
+  "keywords": ["validation", "reports", "svg", "static-site", "machine-learning"]
+}
