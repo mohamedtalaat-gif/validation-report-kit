@@ -256,6 +256,188 @@
       "source": {
         "label": "CYPMode method report",
         "href": "https://github.com/mohamedtalaat-gif/CYPMode/blob/main/METHOD_REPORT.md"
+      },
+      "explore": {
+        "title": "Explore the calibration",
+        "lede": "The methods that were tried for each enzyme, at the gate that a probability had to meet: an expected calibration error of at most 0.05 and a slope between 0.8 and 1.2.",
+        "noun": "methods",
+        "count": {
+          "key": "gate_met",
+          "value": "yes",
+          "label": "meet the gate"
+        },
+        "source": "data/structure_track/outputs/cyp3a4/logs/calibration.log",
+        "columns": [
+          {
+            "key": "isoform",
+            "label": "Enzyme"
+          },
+          {
+            "key": "method",
+            "label": "Method"
+          },
+          {
+            "key": "ece",
+            "label": "Expected calibration error",
+            "digits": 4
+          },
+          {
+            "key": "brier",
+            "label": "Brier score",
+            "digits": 4
+          },
+          {
+            "key": "slope",
+            "label": "Slope",
+            "digits": 3
+          },
+          {
+            "key": "intercept",
+            "label": "Intercept",
+            "digits": 3
+          },
+          {
+            "key": "mean_pred",
+            "label": "Mean predicted",
+            "digits": 3
+          },
+          {
+            "key": "mean_obs",
+            "label": "Mean observed",
+            "digits": 3
+          },
+          {
+            "key": "gate_met",
+            "label": "Gate met"
+          }
+        ],
+        "rows": [
+          {
+            "isoform": "CYP3A4",
+            "method": "raw",
+            "ece": 0.0431,
+            "brier": 0.174,
+            "slope": 1.1813,
+            "intercept": -0.163,
+            "mean_pred": 0.3631,
+            "mean_obs": 0.32,
+            "gate_met": "yes"
+          },
+          {
+            "isoform": "CYP3A4",
+            "method": "platt",
+            "ece": 0.0264,
+            "brier": 0.172,
+            "slope": 1.0754,
+            "intercept": 0.094,
+            "mean_pred": 0.3121,
+            "mean_obs": 0.32,
+            "gate_met": "yes"
+          },
+          {
+            "isoform": "CYP3A4",
+            "method": "isotonic",
+            "ece": 0.0189,
+            "brier": 0.1726,
+            "slope": 0.9252,
+            "intercept": 0.0048,
+            "mean_pred": 0.312,
+            "mean_obs": 0.32,
+            "gate_met": "yes"
+          },
+          {
+            "isoform": "CYP2D6",
+            "method": "raw",
+            "ece": 0.3592,
+            "brier": 0.2087,
+            "slope": -0.0164,
+            "intercept": -2.81,
+            "mean_pred": 0.4142,
+            "mean_obs": 0.0571,
+            "gate_met": "no"
+          },
+          {
+            "isoform": "CYP2D6",
+            "method": "platt",
+            "ece": 0.0038,
+            "brier": 0.0528,
+            "slope": 1.3008,
+            "intercept": 0.7904,
+            "mean_pred": 0.0583,
+            "mean_obs": 0.0571,
+            "gate_met": "no"
+          },
+          {
+            "isoform": "CYP2D6",
+            "method": "isotonic",
+            "ece": 0.0054,
+            "brier": 0.0521,
+            "slope": 0.8249,
+            "intercept": -0.4984,
+            "mean_pred": 0.0593,
+            "mean_obs": 0.0571,
+            "gate_met": "yes"
+          }
+        ],
+        "controls": [
+          {
+            "id": "isoform",
+            "type": "filter",
+            "key": "isoform",
+            "label": "Enzyme",
+            "options": [
+              {
+                "value": "CYP3A4",
+                "label": "CYP3A4"
+              },
+              {
+                "value": "CYP2D6",
+                "label": "CYP2D6"
+              }
+            ]
+          },
+          {
+            "id": "metric",
+            "type": "view",
+            "label": "Show",
+            "options": [
+              {
+                "value": "ECE",
+                "label": "Expected calibration error"
+              },
+              {
+                "value": "Brier",
+                "label": "Brier score"
+              }
+            ]
+          }
+        ],
+        "charts": [
+          {
+            "when": {
+              "metric": "ECE"
+            },
+            "type": "bars",
+            "label": "{method}",
+            "value": "ece",
+            "max": 0.4,
+            "ref": {
+              "value": 0.05,
+              "label": "gate limit"
+            },
+            "tip": "{isoform}, {method}: ECE {ece:4}, Brier {brier:4}, slope {slope:3}; gate met: {gate_met}"
+          },
+          {
+            "when": {
+              "metric": "Brier"
+            },
+            "type": "bars",
+            "label": "{method}",
+            "value": "brier",
+            "max": 0.25,
+            "tip": "{isoform}, {method}: Brier {brier:4}, ECE {ece:4}, slope {slope:3}"
+          }
+        ]
       }
     },
     {
